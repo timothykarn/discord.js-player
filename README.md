@@ -1,13 +1,13 @@
-# Discord Music 
+# Discord.js-Player
 ### Using npm Framework **[discord.js](https://discord.js.org)**
 #### Requires a Spotify application
-[![npm](https://img.shields.io/npm/v/discord-music)](https://npmjs.com/discord-music)
+[![npm](https://img.shields.io/npm/v/discord.js-player)](https://npmjs.com/discord.js-player)
 
 
 ## Install
-### Install **[discord-music](https://npmjs.com/package/discord-player)**
+### Install **[discord.js-player](https://npmjs.com/package/discord.js-player)**
 ```sh
-$ npm install discord-music
+$ npm install discord.js-player
 ```
 ### Install FFmpeg
 -  **[Local FFmpeg Npm](https://npmjs.com/package/ffmpeg-static)** if you do not want FFmpeg installed globally
@@ -24,7 +24,7 @@ const PREFIX = "!";
 client.login(TOKEN);
 
 //Music Setup
-const { Player, EVENTS } = require("discord-music");
+const { Player, EVENTS } = require("discord.js-player");
 const { EVT_TRACK_START, EVT_TRACK_ADD } = EVENTS;
 const YOUR_SPOTIFY_ID = "";
 const YOUR_SPOTIFY_SECRET = "";

@@ -5,7 +5,7 @@ const PREFIX = "!";
 client.login(TOKEN);
 
 //Music Setup
-const { Player, EVENTS } = require("discord-music");
+const { Player, EVENTS } = require("..");
 const { EVT_TRACK_START, EVT_TRACK_ADD } = EVENTS;
 const YOUR_SPOTIFY_ID = "";
 const YOUR_SPOTIFY_SECRET = "";

@@ -1,25 +1,27 @@
 {
-  "name": "discord-music",
+  "name": "discord.js-player",
   "version": "1.0.0",
-  "description": "Play music",
+  "description": "Play music and other tracks",
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/timothykarn/discord-music.git"
+    "url": "git+https://github.com/timothykarn/discord.js-player.git"
   },
   "keywords": [
     "discord",
-    "music"
+    "music",
+    "discord.js",
+    "player"
   ],
   "author": "timothykarn",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/timothykarn/discord-music/issues"
+    "url": "https://github.com/timothykarn/discord.js-player/issues"
   },
-  "homepage": "https://github.com/timothykarn/discord-music#readme",
+  "homepage": "https://github.com/timothykarn/discord.js-player#readme",
   "dependencies": {
     "discord.js": "^12.5.3",
     "spotify-uri": "^2.2.0",
