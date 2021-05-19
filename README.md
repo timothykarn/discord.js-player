@@ -89,12 +89,12 @@ client.on("message", async (message) => {
     }
 });
 ```
-##Other Methods
-###Player
+##Additional Methods
+- Player
 ```js
 Player.deleteQueue(QueueID)
 ```
-###Queue
+- Queue
 ```js
 Queue.loop()
 Queue.loopQueue()
