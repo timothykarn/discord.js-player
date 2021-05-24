@@ -7,7 +7,7 @@ const Track = require('./track');
 const { PLATFORM_SPOTIFY, TYPE_SONG, TYPE_PLAYLIST, EVENTS} = require('../utils/constants');
 let trackSearcher
 
-const { EVT_TRACK_ADD, EVT_SAVE, EVT_CHUNK_END, EVT_CHUNK_START, EVT_TRACK_START } = EVENTS
+const { EVT_TRACK_ADD, EVT_SAVE, EVT_CHUNK_END, EVT_CHUNK_START, EVT_TRACK_START, EVT_ERROR } = EVENTS
 
 module.exports = class Player extends EventEmitter {
 
@@ -82,16 +82,24 @@ module.exports = class Player extends EventEmitter {
      */
     play(id, searchString, options = {}) {
         const {platform, type} = TrackSearcher.resolveSearchMethod(searchString);
-        if (type === TYPE_SONG) {
-            trackSearcher.getTrack(platform, searchString, options.addedBy).then(track => {
-                this.sendTrackToQueue(id, track)
-            })
-        } else if (platform === PLATFORM_SPOTIFY && type === TYPE_PLAYLIST) {
-            this.getTracksAndChunkToQueue(id, platform, type, searchString, options.addedBy)
-        } else {
-            trackSearcher.getTracks(platform, type, searchString, options.addedBy).then(tracks => {
-                this.sendTracksToQueue(id, tracks)
-            })
+        try {
+            if (type === TYPE_SONG) {
+                trackSearcher.getTrack(platform, searchString, options.addedBy).then(track => {
+                    this.sendTrackToQueue(id, track)
+                })
+            } else if (platform === PLATFORM_SPOTIFY && type === TYPE_PLAYLIST) {
+                this.getTracksAndChunkToQueue(id, platform, type, searchString, options.addedBy)
+            } else {
+                trackSearcher.getTracks(platform, type, searchString, options.addedBy).then(tracks => {
+                    this.sendTracksToQueue(id, tracks)
+                })
+            }
+        } catch (e) {
+            console.error(e)
+            console.log("Attempting to reconnect with spotify")
+            this.connect()
+            const queue = this.getQueue(id)
+            this.emit(EVT_ERROR, queue.textChannel, 'Error Playing a song')
         }
     }
 
