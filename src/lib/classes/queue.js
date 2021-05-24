@@ -159,8 +159,8 @@ module.exports = class queue extends EventEmitter {
       this.emit(EVT_ERROR, this.textChannel, 'Volume input was not a number')
       return this
     }
-    if (integer > 2) {
-      integer = 2;
+    if (integer > 5) {
+      integer = 5;
     }
     if (integer <= 0) {
       integer = 0.1;
