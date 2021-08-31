@@ -1,6 +1,8 @@
 const PF_NO = "None";
 const PF_SP = "Spotify";
 const PF_YT = "Youtube";
+const PF_FL = "File";
+
 const TY_SO = "Song";
 const TY_AL = "Album";
 const TY_PL = "Playlist";
@@ -28,6 +30,7 @@ const EVENTS = {
 const PLATFORM_NONE = 1;
 const PLATFORM_SPOTIFY = 2;
 const PLATFORM_YOUTUBE = 3;
+const PLATFORM_FILE = 4;
 
 const TYPE_SONG = 1;
 const TYPE_ALBUM = 2;
@@ -36,7 +39,8 @@ const TYPE_PLAYLIST = 3;
 const PLATFORM_TO_NAME = {
     [PLATFORM_NONE]: PF_NO,
     [PLATFORM_SPOTIFY]: PF_SP,
-    [PLATFORM_YOUTUBE]: PF_YT
+    [PLATFORM_YOUTUBE]: PF_YT,
+    [PLATFORM_FILE]: PF_FL
 }
 const TYPE_TO_NAME = {
     [TYPE_SONG]: TY_SO,
@@ -56,6 +60,9 @@ const PLATFORM_TYPES = {
     [PLATFORM_YOUTUBE]: [
         TYPE_SONG,
         TYPE_PLAYLIST
+    ],
+    [PLATFORM_FILE]: [
+        TYPE_SONG
     ]
 }
 module.exports = {
@@ -63,6 +70,7 @@ module.exports = {
     PLATFORM_NONE,
     PLATFORM_SPOTIFY,
     PLATFORM_YOUTUBE,
+    PLATFORM_FILE,
     TYPE_SONG,
     TYPE_ALBUM,
     TYPE_PLAYLIST,

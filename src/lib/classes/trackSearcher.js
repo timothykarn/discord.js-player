@@ -8,7 +8,7 @@ const {
   PLATFORM_SPOTIFY,
   TYPE_SONG,
   TYPE_ALBUM,
-  TYPE_PLAYLIST,
+  TYPE_PLAYLIST, PLATFORM_FILE,
 } = require('../utils/constants')
 const Track = require('./track');
 
@@ -159,6 +159,24 @@ module.exports = class trackSearcher {
   }
 
   /**
+   * normalize file data into a track
+   * @param data {string | Object}
+   * @param options {Object}
+   * @returns {Track}
+   */
+  static fileToTrack (data, options) {
+    let trackData = {};
+    if (typeof data === "string") {
+      const details = regex[PLATFORM_FILE][TYPE_SONG].exec(data)
+      trackData.title = details[2];
+      trackData.url = data;
+    } else {
+      trackData = data;
+    }
+    if (options.addedBy) trackData.addedBy = options.addedBy
+    return new Track(trackData);
+  }
+  /**
    * Youtube video data to track
    * @param res {Object}
    * @returns {Track}
@@ -259,13 +277,13 @@ module.exports = class trackSearcher {
   static extractTrackByYoutubeType(type, data, addedBy) {
     switch (type) {
       case TYPE_SONG: {
-        data.addedBy = addedBy;
+        if (addedBy) data.addedBy = addedBy;
         return trackSearcher.youtubeDataToTrack(data);
       }
       case TYPE_PLAYLIST: {
         const tracks = data.videos;
         for (let i = 0; i < tracks.length; i++) {
-          tracks[i].addedBy = addedBy;
+          if (addedBy) tracks[i].addedBy = addedBy;
           tracks[i] = trackSearcher.youtubeDataToTrack(tracks[i]);
         }
         return tracks;

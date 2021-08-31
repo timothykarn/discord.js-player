@@ -1,4 +1,4 @@
-const { PLATFORM_YOUTUBE, PLATFORM_SPOTIFY, TYPE_SONG, TYPE_ALBUM, TYPE_PLAYLIST} = require('./constants')
+const { PLATFORM_YOUTUBE, PLATFORM_SPOTIFY, TYPE_SONG, TYPE_ALBUM, TYPE_PLAYLIST, PLATFORM_FILE} = require('./constants')
 
 module.exports = {
     [PLATFORM_SPOTIFY]: {
@@ -9,5 +9,8 @@ module.exports = {
     [PLATFORM_YOUTUBE]: {
         [TYPE_SONG]: /https?:\/\/(www.youtube.com|youtube.com)\/watch(.*)$/,
         [TYPE_PLAYLIST]: /https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/,
+    },
+    [PLATFORM_FILE]: {
+        [TYPE_SONG]: /https?:\/\/(cdn.discordapp.com\/attachments\/[0-9]{18}\/[0-9]{18}\/(.+?)\.(mp3|avi|mp4|wav))/
     }
 }

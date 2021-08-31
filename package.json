@@ -1,6 +1,6 @@
 {
   "name": "discord.js-player",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Play music and other tracks",
   "main": "./src/index.js",
   "scripts": {
@@ -23,10 +23,12 @@
   },
   "homepage": "https://github.com/timothykarn/discord.js-player#readme",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "@discordjs/voice": "^0.6.0",
+    "discord.js": "^13.1.0",
+    "opusscript": "^0.0.8",
     "spotify-uri": "^2.2.0",
     "spotify-web-api-node": "^5.0.2",
     "youtube-sr": "^4.0.6",
-    "ytdl-core": "^4.5.0"
+    "ytdl-core": "^4.9.1"
   }
 }

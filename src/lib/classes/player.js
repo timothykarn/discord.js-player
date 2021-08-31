@@ -4,7 +4,7 @@ const { EventEmitter } = require('events');
 const { TextChannel, VoiceChannel } = require('discord.js');
 const Track = require('./track');
 
-const { PLATFORM_SPOTIFY, TYPE_SONG, TYPE_PLAYLIST, EVENTS} = require('../utils/constants');
+const { PLATFORM_SPOTIFY, TYPE_SONG, TYPE_PLAYLIST, EVENTS, PLATFORM_FILE} = require('../utils/constants');
 let trackSearcher
 
 const { EVT_TRACK_ADD, EVT_SAVE, EVT_CHUNK_END, EVT_CHUNK_START, EVT_TRACK_START, EVT_ERROR } = EVENTS
@@ -84,9 +84,14 @@ module.exports = class Player extends EventEmitter {
         const {platform, type} = TrackSearcher.resolveSearchMethod(searchString);
         try {
             if (type === TYPE_SONG) {
-                trackSearcher.getTrack(platform, searchString, options.addedBy).then(track => {
+                if (platform === PLATFORM_FILE) {
+                    const track = TrackSearcher.fileToTrack(searchString, options)
                     this.sendTrackToQueue(id, track)
-                })
+                } else {
+                    trackSearcher.getTrack(platform, searchString, options.addedBy).then(track => {
+                        this.sendTrackToQueue(id, track)
+                    })
+                }
             } else if (platform === PLATFORM_SPOTIFY && type === TYPE_PLAYLIST) {
                 this.getTracksAndChunkToQueue(id, platform, type, searchString, options.addedBy)
             } else {
