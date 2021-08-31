@@ -1,11 +1,10 @@
 # Discord.js-Player
 ### Using npm Framework **[discord.js](https://discord.js.org)**
 #### Requires a Spotify API Token
-[![npm](https://img.shields.io/npm/v/discord.js-player)](https://npmjs.com/discord.js-player)
-[![npm](https://img.shields.io/npm/v/discord.js)](https://npmjs.com/discord.js-player)
+[![discord.js-player](https://img.shields.io/npm/v/discord.js-player)](https://npmjs.com/discord.js-player)
 
 
-###Recent Change:
+## Recent Change:
 - Recently updated to connect with discord.js@^13.1.0
 - Added upload media playing, simply type the command and attach a file or link the media to play
 

@@ -1,6 +1,6 @@
 {
   "name": "discord.js-player",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Play music and other tracks",
   "main": "./src/index.js",
   "scripts": {
