@@ -180,6 +180,7 @@ module.exports = class queue extends EventEmitter {
         if (/youtu(\.?)be/.test(track.url)) {
             res = await createAudioResource(ytdl(track.url, {
                 filter: 'audioonly',
+                highWaterMark: 10485760,
                 dlChunkSize: 0
             }), {inlineVolume: this.volume !== 1});
         } else {
