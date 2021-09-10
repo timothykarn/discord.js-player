@@ -149,7 +149,7 @@ module.exports = class queue extends EventEmitter {
                     } catch (e) {
                         this.emit(EVT_ERROR, this.textChannel, e)
                     }
-                    if (this.tracks[0]) this.play(track)
+                    if (this.tracks[0]) this.play(this.tracks[0])
                     else {
                         setTimeout(() => {
                             if (!this.tracks[0]) return this.leave()
@@ -180,6 +180,7 @@ module.exports = class queue extends EventEmitter {
         if (/youtu(\.?)be/.test(track.url)) {
             res = await createAudioResource(ytdl(track.url, {
                 filter: 'audioonly',
+                highWaterMark: 10485760,
                 dlChunkSize: 0
             }), {inlineVolume: this.volume !== 1});
         } else {
